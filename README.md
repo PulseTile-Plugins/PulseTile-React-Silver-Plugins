@@ -12,7 +12,7 @@
 9) Procedures
 10) Referrals
 11) Results
-12) Transfars of Care
+12) Transfers of Care
 13) TopThreeThings
 14) Vaccinations
 15) Vitals
