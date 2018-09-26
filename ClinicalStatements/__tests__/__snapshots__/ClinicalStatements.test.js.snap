@@ -358,7 +358,9 @@ exports[`Component <ClinicalStatements /> should renders correctly with clinical
           }
           currentPanel="clinicalStatementsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="clinicalStatementsCreate"
           onCancel={[Function]}
@@ -472,7 +474,9 @@ exports[`Component <ClinicalStatements /> should renders correctly with clinical
           }
           currentPanel="clinicalStatementsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="clinicalStatementsCreate"
           onCancel={[Function]}
