@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientVitalsDetailEpic } from './ducks/fetch-patient-vitals-detail.duck';
 import { fetchPatientVitalsDetailEditEpic } from './ducks/fetch-patient-vitals-detail-edit.duck';
@@ -24,12 +24,12 @@ const reducers = {
   vitalsDetailEdit,
 };
 
-const sidebarConfig = { key: 'vitals', pathToTransition: '/vitals', name: 'Vitals - News', isVisible: true };
+const sidebarConfig = { key: 'vitals', pathToTransition: '/vitals', name: 'Vitals', isVisible: true };
 
 const routers = [
-  { key: 'vitals', component: Vitals, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.VITALS}` },
-  { key: 'vitalsCreate', component: Vitals, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.VITALS}/create` },
-  { key: 'vitalsDetail', component: Vitals, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.VITALS}/:sourceId` },
+  { key: 'vitals', component: Vitals, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.VITALS}` },
+  { key: 'vitalsCreate', component: Vitals, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.VITALS}/create` },
+  { key: 'vitalsDetail', component: Vitals, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.VITALS}/:sourceId` },
 ];
 
 export default {

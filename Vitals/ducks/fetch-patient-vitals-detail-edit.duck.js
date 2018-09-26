@@ -1,7 +1,7 @@
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { createAction } from 'redux-actions';
 
-import { usersUrls } from '../../../../config/server-urls.constants'
+import { usersUrls } from '../../../../../config/server-urls.constants'
 import { fetchPatientVitalsUpdateRequest } from './fetch-patient-vitals.duck'
 
 export const FETCH_PATIENT_VITALS_DETAIL_EDIT_REQUEST = 'FETCH_PATIENT_VITALS_DETAIL_EDIT_REQUEST';
@@ -15,7 +15,7 @@ export const fetchPatientVitalsDetailEditFailure = createAction(FETCH_PATIENT_VI
 export const fetchPatientVitalsDetailEditEpic = (action$, store) =>
   action$.ofType(FETCH_PATIENT_VITALS_DETAIL_EDIT_REQUEST)
     .mergeMap(({ payload }) =>
-      ajax.put(`${usersUrls.PATIENTS_URL}/${payload.userId}/vitalsigns/${payload.sourceId}`, payload, {
+      ajax.put(`/api/patients/${payload.userId}/vitalsigns/${payload.sourceId}`, payload, {
         Cookie: store.getState().credentials.cookie,
         'Content-Type': 'application/json',
       })

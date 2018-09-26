@@ -7,8 +7,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { lifecycle, compose } from 'recompose';
 
-import PluginListHeader from '../../plugin-page-component/PluginListHeader';
-import PluginMainPanel from '../../plugin-page-component/PluginMainPanel';
+import PluginListHeader from '../../../plugin-page-component/PluginListHeader';
+import PluginMainPanel from '../../../plugin-page-component/PluginMainPanel';
 
 import { columnsConfig, defaultColumnsSelected } from './table-columns.config'
 import { valuesNames } from './forms.config';
@@ -16,14 +16,14 @@ import { fetchPatientReferralsRequest } from './ducks/fetch-patient-referrals.du
 import { fetchPatientReferralsCreateRequest } from './ducks/fetch-patient-referrals-create.duck';
 import { fetchPatientReferralsDetailRequest } from './ducks/fetch-patient-referrals-detail.duck';
 import { fetchPatientReferralsDetailEditRequest } from './ducks/fetch-patient-referrals-detail-edit.duck';
-import { fetchPatientReferralsOnMount, fetchPatientReferralsDetailOnMount } from '../../../utils/HOCs/fetch-patients.utils';
+import { fetchPatientReferralsOnMount, fetchPatientReferralsDetailOnMount } from '../../config/synopsisRequests';
 import { patientReferralsSelector, referralsDetailFormStateSelector, referralsCreateFormStateSelector, metaPanelFormStateSelector, patientReferralsDetailSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
-import { checkIsValidateForm, operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { themeClientUrls } from '../../config/clientUrls';
+import { checkIsValidateForm, operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 import ReferralsDetail from './ReferralsDetail/ReferralsDetail';
-import PluginCreate from '../../plugin-page-component/PluginCreate';
+import PluginCreate from '../../../plugin-page-component/PluginCreate';
 import ReferralsCreateForm from './ReferralsCreate/ReferralsCreateForm'
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
 
 const REFERRALS_MAIN = 'referralsMain';
 const REFERRALS_DETAIL = 'referralsDetail';
@@ -73,13 +73,13 @@ export default class Referrals extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.REFERRALS}/${sourceId}` && sourceId !== undefined) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.REFERRALS}/${sourceId}` && sourceId !== undefined) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.REFERRALS}/create`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.REFERRALS}/create`) {
       this.setState({ isSecondPanel: true, isBtnExpandVisible: true, isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: REFERRALS_CREATE, isDetailPanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.REFERRALS}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.REFERRALS}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: REFERRAL_PANEL, isDetailPanelVisible: false, expandedPanel: 'all' })
     }
 
@@ -111,7 +111,7 @@ export default class Referrals extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: REFERRAL_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true })
     actions.fetchPatientReferralsDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.REFERRALS}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.REFERRALS}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
@@ -119,7 +119,7 @@ export default class Referrals extends PureComponent {
   handleCreate = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: REFERRALS_CREATE, isSecondPanel: true, isDetailPanelVisible: false, isSubmit: false, isLoading: true })
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.REFERRALS}/create`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.REFERRALS}/create`);
   };
 
   handleEdit = (name) => {
@@ -163,7 +163,7 @@ export default class Referrals extends PureComponent {
   handleCreateCancel = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: REFERRAL_PANEL, isSecondPanel: false, isBtnExpandVisible: false, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.REFERRALS}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.REFERRALS}`);
   };
 
   handleSaveSettingsCreateForm = (formValues) => {
@@ -171,7 +171,7 @@ export default class Referrals extends PureComponent {
 
     if (checkIsValidateForm(referralsCreateFormState)) {
       actions.fetchPatientReferralsCreateRequest(this.formValuesToString(formValues, 'create'));
-      this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.REFERRALS}`);
+      this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.REFERRALS}`);
       this.hideCreateForm();
       this.setState({ isSubmit: false, isLoading: true });
     } else {

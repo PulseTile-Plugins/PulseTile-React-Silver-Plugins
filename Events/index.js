@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientEventsDetailEpic } from './ducks/fetch-patient-events-detail.duck';
 import { fetchPatientEventsDetailEditEpic } from './ducks/fetch-patient-events-detail-edit.duck';
@@ -27,9 +27,9 @@ const reducers = {
 const sidebarConfig = { key: 'events', pathToTransition: '/events', name: 'Events', isVisible: true };
 
 const routers = [
-  { key: 'events', component: Events, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.EVENTS}` },
-  { key: 'eventsCreate', component: Events, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.EVENTS}/create` },
-  { key: 'eventsDetail', component: Events, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.EVENTS}/:sourceId` },
+  { key: 'events', component: Events, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.EVENTS}` },
+  { key: 'eventsCreate', component: Events, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.EVENTS}/create` },
+  { key: 'eventsDetail', component: Events, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.EVENTS}/:sourceId` },
 ];
 
 export default {

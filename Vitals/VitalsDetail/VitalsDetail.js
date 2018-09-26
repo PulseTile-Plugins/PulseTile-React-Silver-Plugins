@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-import PluginDetailPanel from '../../../plugin-page-component/PluginDetailPanel'
+import PluginDetailPanel from '../../../../plugin-page-component/PluginDetailPanel'
 import VitalsDetailForm from './VitalsDetailForm'
 import VitalsPopover from '../vitals-page-component/VitalsPopover'
-import Switch from '../../../form-fields/Switch';
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import Switch from '../../../../form-fields/Switch';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 import { valuesNames, valuesLabels, valuesAddons } from '../forms.config';
 
 const VITAL_PANEL = 'vitalPanel';

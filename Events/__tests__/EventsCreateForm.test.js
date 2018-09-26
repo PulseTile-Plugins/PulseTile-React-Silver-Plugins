@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 
 import EventsCreateForm from '../EventsCreate/EventsCreateForm';
 import { valuesNames, valuesLabels, connectionOptions, detailsOptions } from '../forms.config';
-import {getDDMMMYYYY} from '../../../../utils/time-helpers.utils';
+import {getDDMMMYYYY} from '../../../../../utils/time-helpers.utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 

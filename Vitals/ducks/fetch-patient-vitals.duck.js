@@ -2,9 +2,9 @@ import _ from 'lodash/fp';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { createAction } from 'redux-actions';
 
-import { usersUrls } from '../../../../config/server-urls.constants'
+import { usersUrls } from '../../../../../config/server-urls.constants'
 import { fetchPatientVitalsDetailRequest } from './fetch-patient-vitals-detail.duck';
-import { hasTokenInResponse } from '../../../../utils/plugin-helpers.utils';
+import { hasTokenInResponse } from '../../../../../utils/plugin-helpers.utils';
 
 export const FETCH_PATIENT_VITALS_REQUEST = 'FETCH_PATIENT_VITALS_REQUEST';
 export const FETCH_PATIENT_VITALS_SUCCESS = 'FETCH_PATIENT_VITALS_SUCCESS';
@@ -19,7 +19,7 @@ export const fetchPatientVitalsUpdateRequest = createAction(FETCH_PATIENT_VITALS
 export const fetchPatientVitalsEpic = (action$, store) =>
   action$.ofType(FETCH_PATIENT_VITALS_REQUEST)
     .mergeMap(({ payload }) =>
-      ajax.getJSON(`${usersUrls.PATIENTS_URL}/${payload.userId}/vitalsigns`, {
+      ajax.getJSON(`/api/patients/${payload.userId}/vitalsigns`, {
         headers: { Cookie: store.getState().credentials.cookie },
       })
         .map((response) => {

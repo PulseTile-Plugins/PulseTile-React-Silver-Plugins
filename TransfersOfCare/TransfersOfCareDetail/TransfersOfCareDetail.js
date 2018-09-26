@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 
-import PluginDetailPanel from '../../../plugin-page-component/PluginDetailPanel';
+import PluginDetailPanel from '../../../../plugin-page-component/PluginDetailPanel';
 import TransfersOfCareDetailForm from './TransfersOfCareDetailForm';
-import RecordsOfTableView from '../../../form-fields/RecordsOfTable/RecordsOfTableView';
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import RecordsOfTableView from '../../../../form-fields/RecordsOfTable/RecordsOfTableView';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 import { valuesNames, valuesLabels } from '../forms.config';
 
 const TRANSFER_OF_CARE_PANEL = 'transferOfCarePanel';

@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 
-import PluginDetailPanel from '../../../plugin-page-component/PluginDetailPanel';
+import PluginDetailPanel from '../../../../plugin-page-component/PluginDetailPanel';
 import DocumentsDetailDischarge from './DocumentsDetailDischarge';
 import DocumentsDetailReferral from './DocumentsDetailReferral';
-import ConfirmationModal from '../../../ui-elements/ConfirmationModal/ConfirmationModal';
+import ConfirmationModal from '../../../../ui-elements/ConfirmationModal/ConfirmationModal';
 import { valuesNames } from '../forms.config';
 import PropTypes from 'prop-types';
-import { clientUrls } from '../../../../config/client-urls.constants';
+import { clientUrls } from '../../../../../config/client-urls.constants';
 
 const DOCUMENT_PANEL = 'documentPanel';
 const DOCUMENT_TYPE_DISCHARGE = 'discharge';

@@ -13,6 +13,4 @@
 10) Referrals
 11) Results
 12) Transfers of Care
-13) TopThreeThings
-14) Vaccinations
-15) Vitals
+13) Vitals

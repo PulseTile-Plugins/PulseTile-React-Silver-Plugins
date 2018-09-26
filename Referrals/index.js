@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientReferralsDetailEpic } from './ducks/fetch-patient-referrals-detail.duck';
 import { fetchPatientReferralsDetailEditEpic } from './ducks/fetch-patient-referrals-detail-edit.duck';
@@ -27,9 +27,9 @@ const reducers = {
 const sidebarConfig = { key: 'referrals', pathToTransition: '/referrals', name: 'Referrals', isVisible: true };
 
 const routers = [
-  { key: 'referrals', component: Referrals, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.REFERRALS}` },
-  { key: 'referralsCreate', component: Referrals, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.REFERRALS}/create` },
-  { key: 'referralsDetail', component: Referrals, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.REFERRALS}/:sourceId` },
+  { key: 'referrals', component: Referrals, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.REFERRALS}` },
+  { key: 'referralsCreate', component: Referrals, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.REFERRALS}/create` },
+  { key: 'referralsDetail', component: Referrals, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.REFERRALS}/:sourceId` },
 ];
 
 export default {

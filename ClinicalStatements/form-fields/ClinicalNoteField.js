@@ -9,14 +9,14 @@ import 'bootstrap';
 import 'x-editable/dist/bootstrap3-editable/js/bootstrap-editable';
 import 'x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css';
 
-import PaginationBlock from '../../../presentational/PaginationBlock/PaginationBlock';
+import PaginationBlock from '../../../../presentational/PaginationBlock/PaginationBlock';
 import { valuesLabels, valuesNames } from '../forms.config';
-import { operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
+import { operationsOnCollection } from '../../../../../utils/plugin-helpers.utils';
 import * as helper from './clinical-statements-helper';
 
 import { fetchPatientClinicalStatementsTagsRequest } from '../ducks/fetch-patient-clinical-statements-tags.duck';
 import { fetchPatientClinicalStatementsQueryRequest } from '../ducks/fetch-patient-clinical-statements-query.duck';
-import { fetchPatientClinicalStatementsTagsOnMount } from '../../../../utils/HOCs/fetch-patients.utils';
+import { fetchPatientClinicalStatementsTagsOnMount } from '../../../config/synopsisRequests';
 import { patientClinicalStatementsTagsSelector, patientClinicalStatementsQuerySelector } from '../selectors';
 
 const mapDispatchToProps = dispatch => ({ actions: bindActionCreators({ fetchPatientClinicalStatementsTagsRequest, fetchPatientClinicalStatementsQueryRequest }, dispatch) });

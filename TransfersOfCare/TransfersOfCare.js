@@ -7,8 +7,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { lifecycle, compose } from 'recompose';
 
-import PluginListHeader from '../../plugin-page-component/PluginListHeader';
-import PluginMainPanel from '../../plugin-page-component/PluginMainPanel';
+import PluginListHeader from '../../../plugin-page-component/PluginListHeader';
+import PluginMainPanel from '../../../plugin-page-component/PluginMainPanel';
+import PluginCreate from '../../../plugin-page-component/PluginCreate';
 
 import { columnsConfig, defaultColumnsSelected } from './table-columns.config'
 import { valuesNames } from './forms.config';
@@ -17,14 +18,17 @@ import { fetchPatientTransfersOfCareRequest } from './ducks/fetch-patient-transf
 import { fetchPatientTransfersOfCareCreateRequest } from './ducks/fetch-patient-transfers-of-care-create.duck';
 import { fetchPatientTransfersOfCareDetailRequest } from './ducks/fetch-patient-transfers-of-care-detail.duck';
 import { fetchPatientTransfersOfCareDetailEditRequest } from './ducks/fetch-patient-transfers-of-care-detail-edit.duck';
-import { fetchPatientTransfersOfCareOnMount, fetchPatientTransfersOfCareDetailOnMount } from '../../../utils/HOCs/fetch-patients.utils';
+
+import { fetchPatientTransfersOfCareOnMount, fetchPatientTransfersOfCareDetailOnMount } from '../../config/synopsisRequests';
+
 import { patientTransfersOfCareSelector, transfersOfCareDetailFormStateSelector, transfersOfCareCreateFormStateSelector, patientTransfersOfCareDetailSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
-import { checkIsValidateForm, operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { themeClientUrls } from '../../config/clientUrls';
+
+import { checkIsValidateForm, operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 import TransfersOfCareDetail from './TransfersOfCareDetail/TransfersOfCareDetail';
-import PluginCreate from '../../plugin-page-component/PluginCreate';
+
 import TransfersOfCareCreateForm from './TransfersOfCareCreate/TransfersOfCareCreateForm'
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
 
 const TRANSFERS_OF_CARE_MAIN = 'transfersOfCareMain';
 const TRANSFERS_OF_CARE_DETAIL = 'transfersOfCareDetail';
@@ -81,13 +85,13 @@ export default class TransfersOfCare extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.TRANSFERS_OF_CARE}/${sourceId}` && sourceId !== undefined) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.TRANSFERS_OF_CARE}/${sourceId}` && sourceId !== undefined) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.TRANSFERS_OF_CARE}/create`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.TRANSFERS_OF_CARE}/create`) {
       this.setState({ isSecondPanel: true, isBtnExpandVisible: true, isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: TRANSFERS_OF_CARE_CREATE, isDetailPanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.TRANSFERS_OF_CARE}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.TRANSFERS_OF_CARE}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: TRANSFER_OF_CARE_PANEL, isDetailPanelVisible: false, expandedPanel: 'all' })
     }
 
@@ -119,7 +123,7 @@ export default class TransfersOfCare extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: TRANSFER_OF_CARE_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true })
     actions.fetchPatientTransfersOfCareDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.TRANSFERS_OF_CARE}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.TRANSFERS_OF_CARE}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
@@ -127,7 +131,7 @@ export default class TransfersOfCare extends PureComponent {
   handleCreate = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: TRANSFERS_OF_CARE_CREATE, isSecondPanel: true, isDetailPanelVisible: false, isSubmit: false, isLoading: true })
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.TRANSFERS_OF_CARE}/create`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.TRANSFERS_OF_CARE}/create`);
   };
 
   handleEdit = (name) => {
@@ -171,7 +175,7 @@ export default class TransfersOfCare extends PureComponent {
   handleCreateCancel = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: TRANSFER_OF_CARE_PANEL, isSecondPanel: false, isBtnExpandVisible: false, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.TRANSFERS_OF_CARE}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.TRANSFERS_OF_CARE}`);
   };
 
   handleSaveSettingsCreateForm = (formValues) => {
@@ -179,7 +183,7 @@ export default class TransfersOfCare extends PureComponent {
 
     if (checkIsValidateForm(transfersOfCareCreateFormState)) {
       actions.fetchPatientTransfersOfCareCreateRequest(this.formValuesToString(formValues, 'create'));
-      this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.TRANSFERS_OF_CARE}`);
+      this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.TRANSFERS_OF_CARE}`);
       this.hideCreateForm();
       this.setState({ isSubmit: false, isLoading: true });
     } else {

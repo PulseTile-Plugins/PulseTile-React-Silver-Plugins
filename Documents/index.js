@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientDocumentsDetailEpic } from './ducks/fetch-patient-documents-detail.duck';
 import { fetchPatientDocumentsEpic } from './ducks/fetch-patient-documents.duck';
@@ -20,8 +20,8 @@ const  reducers = {
 const sidebarConfig = { key: 'documents', pathToTransition: '/documents', name: 'Documents', isVisible: true };
 
 const routers = [
-  { key: 'documents', component: Documents, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.DOCUMENTS}` },
-  { key: 'documentsDetail', component: Documents, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.DOCUMENTS}/:sourceId` },
+  { key: 'documents', component: Documents, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.DOCUMENTS}` },
+  { key: 'documentsDetail', component: Documents, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.DOCUMENTS}/:sourceId` },
 ];
 
 export default {

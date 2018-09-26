@@ -13,6 +13,7 @@ exports[`Component <TransfersOfCareDetail /> should renders correctly with diffe
           "transferOfCarePanel": false,
         }
       }
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="transferOfCarePanel"
@@ -174,6 +175,7 @@ exports[`Component <TransfersOfCareDetail /> should renders correctly with diffe
         }
       }
       isBtnShowPanel={true}
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="transferOfCarePanel"
@@ -223,6 +225,7 @@ exports[`Component <TransfersOfCareDetail /> should renders with props correctly
           "transferOfCarePanel": false,
         }
       }
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="transferOfCarePanel"
@@ -408,6 +411,7 @@ exports[`Component <TransfersOfCareDetail /> should renders with props correctly
           "transferOfCarePanel": false,
         }
       }
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="transferOfCarePanel"

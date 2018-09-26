@@ -1,7 +1,7 @@
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { createAction } from 'redux-actions';
 
-import { usersUrls } from '../../../../config/server-urls.constants'
+import { usersUrls } from '../../../../../config/server-urls.constants'
 
 export const FETCH_LIST_ORDERS_REQUEST = 'FETCH_LIST_ORDERS_REQUEST';
 export const FETCH_LIST_ORDERS_SUCCESS = 'FETCH_LIST_ORDERS_SUCCESS';

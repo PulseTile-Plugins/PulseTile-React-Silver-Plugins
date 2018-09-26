@@ -2,9 +2,9 @@ import _ from 'lodash/fp';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { createAction } from 'redux-actions';
 
-import { usersUrls } from '../../../../config/server-urls.constants'
+import { themeClientUrls } from '../../../config/clientUrls';
 import { fetchPatientReferralsDetailRequest } from './fetch-patient-referrals-detail.duck';
-import { hasTokenInResponse } from '../../../../utils/plugin-helpers.utils';
+import { hasTokenInResponse } from '../../../../../utils/plugin-helpers.utils';
 
 export const FETCH_PATIENT_REFERRALS_REQUEST = 'FETCH_PATIENT_REFERRALS_REQUEST';
 export const FETCH_PATIENT_REFERRALS_SUCCESS = 'FETCH_PATIENT_REFERRALS_SUCCESS';
@@ -19,7 +19,7 @@ export const fetchPatientReferralsUpdateRequest = createAction(FETCH_PATIENT_REF
 export const fetchPatientReferralsEpic = (action$, store) =>
   action$.ofType(FETCH_PATIENT_REFERRALS_REQUEST)
     .mergeMap(({ payload }) =>
-      ajax.getJSON(`${usersUrls.PATIENTS_URL}/${payload.userId}/referrals`, {
+      ajax.getJSON(`/api/patients/${payload.userId}/${themeClientUrls.REFERRALS}`, {
         headers: { Cookie: store.getState().credentials.cookie },
       })
         .map((response) => {
@@ -35,7 +35,7 @@ export const fetchPatientReferralsEpic = (action$, store) =>
 export const fetchPatientReferralsUpdateEpic = (action$, store) =>
   action$.ofType(FETCH_PATIENT_REFERRALS_UPDATE_REQUEST)
     .mergeMap(({ payload }) =>
-      ajax.getJSON(`${usersUrls.PATIENTS_URL}/${payload.userId}/referrals`, {
+      ajax.getJSON(`/api/patients/${payload.userId}/${themeClientUrls.REFERRALS}`, {
         headers: { Cookie: store.getState().credentials.cookie },
       })
         .flatMap((response) => {

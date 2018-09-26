@@ -4,9 +4,9 @@ import _ from 'lodash/fp';
 
 import EventsDetailPanel from './EventsDetailPanel'
 import EventsDetailForm from './EventsDetailForm'
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 import { valuesNames, valuesLabels } from '../forms.config';
-import { isIDCRRole } from '../../../../utils/auth/auth-check-permissions';
+import { isIDCRRole } from '../../../../../utils/auth/auth-check-permissions';
 
 const EVENT_PANEL = 'eventPanel';
 const META_PANEL = 'metaPanel';

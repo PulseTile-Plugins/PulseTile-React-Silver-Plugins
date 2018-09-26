@@ -648,7 +648,9 @@ exports[`Component <Referrals /> should renders correctly with referralsDetail a
           }
           currentPanel="referralsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="referralsCreate"
           onCancel={[Function]}
@@ -753,7 +755,9 @@ exports[`Component <Referrals /> should renders correctly with referralsDetail a
           }
           currentPanel="referralsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="referralsCreate"
           onCancel={[Function]}

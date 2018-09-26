@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientDrawingsDetailEpic } from './ducks/fetch-patient-drawings-detail.duck';
 import { fetchPatientDrawingsDetailEditEpic } from './ducks/fetch-patient-drawings-detail-edit.duck';
@@ -27,9 +27,9 @@ const reducers = {
 const sidebarConfig = { key: 'drawings', pathToTransition: '/drawings', name: 'Drawings', isVisible: true };
 
 const routers = [
-  { key: 'drawings', component: Drawings, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.DRAWINGS}` },
-  { key: 'drawingsCreate', component: Drawings, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.DRAWINGS}/create` },
-  { key: 'drawingsDetail', component: Drawings, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.DRAWINGS}/:sourceId` },
+  { key: 'drawings', component: Drawings, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.DRAWINGS}` },
+  { key: 'drawingsCreate', component: Drawings, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.DRAWINGS}/create` },
+  { key: 'drawingsDetail', component: Drawings, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.DRAWINGS}/:sourceId` },
 ];
 
 export default {

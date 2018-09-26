@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientClinicalStatementsDetailEpic } from './ducks/fetch-patient-clinical-statements-detail.duck';
 import { fetchPatientClinicalStatementsEpic } from './ducks/fetch-patient-clinical-statements.duck';
@@ -36,9 +36,9 @@ const reducers = {
 const sidebarConfig = { key: 'clinicalStatements', pathToTransition: '/clinicalStatements', name: 'Clinical Statements', isVisible: true };
 
 const routers = [
-  { key: 'clinicalStatements', component: ClinicalStatements, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.CLINICAL_STATEMENTS}` },
-  { key: 'clinicalStatementsCreate', component: ClinicalStatements, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.CLINICAL_STATEMENTS}/create` },
-  { key: 'clinicalStatementsDetail', component: ClinicalStatements, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.CLINICAL_STATEMENTS}/:sourceId` },
+  { key: 'clinicalStatements', component: ClinicalStatements, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.CLINICAL_STATEMENTS}` },
+  { key: 'clinicalStatementsCreate', component: ClinicalStatements, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.CLINICAL_STATEMENTS}/create` },
+  { key: 'clinicalStatementsDetail', component: ClinicalStatements, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.CLINICAL_STATEMENTS}/:sourceId` },
 ];
 
 export default {

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import FormSectionList from '../../../form-fields/FormSectionList';
-import FormSection from '../../../form-fields/FormSection';
+import FormSectionList from '../../../../form-fields/FormSectionList';
+import FormSection from '../../../../form-fields/FormSection';
 
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 import { valuesNames, valuesLabels } from '../forms.config';
 
 const ALLERGIES_TYPE = 'allergies';

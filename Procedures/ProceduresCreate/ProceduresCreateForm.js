@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import { Field, reduxForm } from 'redux-form'
 
-import ValidatedInput from '../../../form-fields/ValidatedInputFormGroup';
-import ValidatedTextareaFormGroup from '../../../form-fields/ValidatedTextareaFormGroup';
-import DateInput from '../../../form-fields/DateInput';
+import ValidatedInput from '../../../../form-fields/ValidatedInputFormGroup';
+import ValidatedTextareaFormGroup from '../../../../form-fields/ValidatedTextareaFormGroup';
+import DateInput from '../../../../form-fields/DateInput';
 import { validateForm } from '../forms.validation';
 import { valuesNames, valuesLabels } from '../forms.config';
 import { defaultFormValues } from './default-values.config';
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 
 @reduxForm({
   form: 'proceduresCreateFormSelector',

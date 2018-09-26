@@ -2,8 +2,6 @@ import _ from 'lodash/fp';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { createAction } from 'redux-actions';
 
-import { usersUrls } from '../../../../config/server-urls.constants'
-
 export const FETCH_PATIENT_TEST_RESULTS_DETAIL_REQUEST = 'FETCH_PATIENT_TEST_RESULTS_DETAIL_REQUEST';
 export const FETCH_PATIENT_TEST_RESULTS_DETAIL_SUCCESS = 'FETCH_PATIENT_TEST_RESULTS_DETAIL_SUCCESS';
 export const FETCH_PATIENT_TEST_RESULTS_DETAIL_FAILURE = 'FETCH_PATIENT_TEST_RESULTS_DETAIL_FAILURE';
@@ -15,7 +13,7 @@ export const fetchPatientTestResultsDetailFailure = createAction(FETCH_PATIENT_T
 export const fetchPatientTestResultsDetailEpic = (action$, store) =>
   action$.ofType(FETCH_PATIENT_TEST_RESULTS_DETAIL_REQUEST)
     .mergeMap(({ payload }) =>
-      ajax.getJSON(`${usersUrls.PATIENTS_URL}/${payload.userId}/labresults/${payload.sourceId}`, {
+      ajax.getJSON(`/api/patients/${payload.userId}/labresults/${payload.sourceId}`, {
         headers: { Cookie: store.getState().credentials.cookie },
       })
         .map(response => fetchPatientTestResultsDetailSuccess({

@@ -498,7 +498,9 @@ exports[`Component <TransfersOfCare /> should renders correctly with transfersOf
           }
           currentPanel="transfersOfCareCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="transfersOfCareCreate"
           onCancel={[Function]}
@@ -616,7 +618,9 @@ exports[`Component <TransfersOfCare /> should renders correctly with transfersOf
           }
           currentPanel="transfersOfCareCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="transfersOfCareCreate"
           onCancel={[Function]}

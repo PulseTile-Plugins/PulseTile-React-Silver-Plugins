@@ -1,4 +1,4 @@
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
 
 export const columnsConfig = [
   { key: 'dateOfRequest', title: 'Date of Request', width: '25%', transformer: getDDMMMYYYY },

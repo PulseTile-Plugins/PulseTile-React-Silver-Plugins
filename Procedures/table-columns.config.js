@@ -1,4 +1,4 @@
-import { getDDMMMYYYY, getHHmm } from '../../../utils/time-helpers.utils';
+import { getDDMMMYYYY, getHHmm } from '../../../../utils/time-helpers.utils';
 
 export const columnsConfig = [
   { key: 'name', title: 'Procedure Name', width: '41%' },

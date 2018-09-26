@@ -16,14 +16,14 @@ import { fetchPatientVitalsRequest } from './ducks/fetch-patient-vitals.duck';
 import { fetchPatientVitalsCreateRequest } from './ducks/fetch-patient-vitals-create.duck';
 import { fetchPatientVitalsDetailRequest } from './ducks/fetch-patient-vitals-detail.duck';
 import { fetchPatientVitalsDetailEditRequest } from './ducks/fetch-patient-vitals-detail-edit.duck';
-import { fetchPatientVitalsOnMount, fetchPatientVitalsDetailOnMount } from '../../../utils/HOCs/fetch-patients.utils';
+import { fetchPatientVitalsOnMount, fetchPatientVitalsDetailOnMount } from '../../config/synopsisRequests';
 import { patientVitalsSelector, vitalsDetailFormStateSelector, vitalsCreateFormStateSelector, patientVitalsDetailSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
-import { checkIsValidateForm, operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { themeClientUrls } from '../../config/clientUrls';
+import { checkIsValidateForm, operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 import VitalsDetail from './VitalsDetail/VitalsDetail';
-import PluginCreate from '../../plugin-page-component/PluginCreate';
+import PluginCreate from '../../../plugin-page-component/PluginCreate';
 import VitalsCreateForm from './VitalsCreate/VitalsCreateForm'
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
 import { serviceVitalsSigns } from './viltals-helpers.utils';
 
 const VITALS_MAIN = 'vitalsMain';
@@ -84,13 +84,13 @@ export default class Vitals extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.VITALS}/${sourceId}` && sourceId !== undefined && !_.isEmpty(nextProps.vitalDetail)) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.VITALS}/${sourceId}` && sourceId !== undefined && !_.isEmpty(nextProps.vitalDetail)) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.VITALS}/create`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.VITALS}/create`) {
       this.setState({ isSecondPanel: true, isBtnExpandVisible: true, isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: VITALS_CREATE, isDetailPanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.VITALS}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.VITALS}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: VITAL_PANEL, isDetailPanelVisible: false, expandedPanel: 'all' })
     }
 
@@ -132,7 +132,7 @@ export default class Vitals extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: VITAL_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true })
     actions.fetchPatientVitalsDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.VITALS}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.VITALS}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
@@ -140,7 +140,7 @@ export default class Vitals extends PureComponent {
   handleCreate = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: VITALS_CREATE, isSecondPanel: true, isDetailPanelVisible: false, isSubmit: false, isLoading: true })
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.VITALS}/create`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.VITALS}/create`);
   };
 
   handleEdit = (name) => {
@@ -184,7 +184,7 @@ export default class Vitals extends PureComponent {
   handleCreateCancel = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: VITAL_PANEL, isSecondPanel: false, isBtnExpandVisible: false, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.VITALS}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.VITALS}`);
   };
 
   handleSaveSettingsCreateForm = (formValues) => {
@@ -192,7 +192,7 @@ export default class Vitals extends PureComponent {
 
     if (checkIsValidateForm(vitalsCreateFormState)) {
       actions.fetchPatientVitalsCreateRequest(this.formValuesToString(formValues, 'create'));
-      this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.VITALS}`);
+      this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.VITALS}`);
       this.hideCreateForm();
       this.setState({ isSubmit: false, isLoading: true });
     } else {

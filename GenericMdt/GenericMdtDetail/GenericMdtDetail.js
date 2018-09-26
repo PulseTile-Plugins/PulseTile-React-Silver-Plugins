@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
-import PluginDetailPanel from '../../../plugin-page-component/PluginDetailPanel';
+import PluginDetailPanel from '../../../../plugin-page-component/PluginDetailPanel';
 import MDTsDetailForm from './GenericMdtDetailForm';
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 import { valuesNames, valuesLabels } from '../forms.config';
 
 const MDTS_PANEL = 'mdtsPanel';

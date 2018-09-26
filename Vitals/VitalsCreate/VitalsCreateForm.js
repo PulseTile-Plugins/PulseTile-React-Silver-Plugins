@@ -2,14 +2,14 @@ import React, { PureComponent } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import _ from "lodash/fp";
 
-import ValidatedInput from '../../../form-fields/ValidatedInputFormGroup';
-import DateInput from '../../../form-fields/DateInput';
+import ValidatedInput from '../../../../form-fields/ValidatedInputFormGroup';
+import DateInput from '../../../../form-fields/DateInput';
 import VitalsInput from '../vitals-page-component/VitalsInput';
-import Switch from '../../../form-fields/Switch';
+import Switch from '../../../../form-fields/Switch';
 import { validateForm } from '../forms.validation';
 import { valuesNames, valuesLabels, valuesAddons } from '../forms.config';
 import { defaultFormValues } from './default-values.config';
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 
 @reduxForm({
   form: 'vitalsCreateFormSelector',

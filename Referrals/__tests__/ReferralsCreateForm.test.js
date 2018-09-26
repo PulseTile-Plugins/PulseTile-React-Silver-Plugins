@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 
 import ReferralsCreateForm from '../ReferralsCreate/ReferralsCreateForm';
 import { valuesNames, valuesLabels } from '../forms.config';
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 

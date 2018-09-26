@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 
-import PluginDetailPanel from '../../../plugin-page-component/PluginDetailPanel'
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import PluginDetailPanel from '../../../../plugin-page-component/PluginDetailPanel'
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 import { valuesNames, valuesLabels } from '../forms.config';
 
 const TEST_RESULT_PANEL = 'testResultPanel';
