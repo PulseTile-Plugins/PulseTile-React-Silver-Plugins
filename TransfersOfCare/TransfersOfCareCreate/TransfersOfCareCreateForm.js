@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import moment from 'moment';
 
-import ValidatedTextareaFormGroup from '../../../form-fields/ValidatedTextareaFormGroup';
-import RecordsOfTable from '../../../form-fields/RecordsOfTable/RecordsOfTable';
-import SelectFormGroup from '../../../form-fields/SelectFormGroup';
-import DateInput from '../../../form-fields/DateInput';
+import ValidatedTextareaFormGroup from '../../../../form-fields/ValidatedTextareaFormGroup';
+import RecordsOfTable from '../../../../form-fields/RecordsOfTable/RecordsOfTable';
+import SelectFormGroup from '../../../../form-fields/SelectFormGroup';
+import DateInput from '../../../../form-fields/DateInput';
 import { validateForm } from '../forms.validation';
 import { valuesNames, valuesLabels, citiesOptions, typesOfRecordsOptions } from '../forms.config';
 import { defaultFormValues } from './default-values.config';
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 import { transfersOfCareCreateFormStateSelector } from '../selectors';
 
 

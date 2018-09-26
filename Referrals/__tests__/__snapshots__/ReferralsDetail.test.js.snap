@@ -13,6 +13,7 @@ exports[`Component <ReferralsDetail /> should renders correctly with different s
           "referralPanel": false,
         }
       }
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="referralPanel"
@@ -196,6 +197,7 @@ exports[`Component <ReferralsDetail /> should renders correctly with different s
           "referralPanel": true,
         }
       }
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="referralPanel"
@@ -242,6 +244,7 @@ exports[`Component <ReferralsDetail /> should renders with props correctly 1`] =
           "referralPanel": false,
         }
       }
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="referralPanel"

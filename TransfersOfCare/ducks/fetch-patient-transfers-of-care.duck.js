@@ -2,9 +2,9 @@ import _ from 'lodash/fp';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { createAction } from 'redux-actions';
 
-import { usersUrls } from '../../../../config/server-urls.constants'
+import { usersUrls } from '../../../../../config/server-urls.constants'
 import { fetchPatientTransfersOfCareDetailRequest } from './fetch-patient-transfers-of-care-detail.duck';
-import { hasTokenInResponse } from '../../../../utils/plugin-helpers.utils';
+import { hasTokenInResponse } from '../../../../../utils/plugin-helpers.utils';
 
 export const FETCH_PATIENT_TRANSFERS_OF_CARE_REQUEST = 'FETCH_PATIENT_TRANSFERS_OF_CARE_REQUEST';
 export const FETCH_PATIENT_TRANSFERS_OF_CARE_SUCCESS = 'FETCH_PATIENT_TRANSFERS_OF_CARE_SUCCESS';

@@ -7,9 +7,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { lifecycle, compose } from 'recompose';
 
-import PluginListHeader from '../../plugin-page-component/PluginListHeader';
-import PluginCreate from '../../plugin-page-component/PluginCreate';
-import PluginMainPanel from '../../plugin-page-component/PluginMainPanel';
+import PluginListHeader from '../../../plugin-page-component/PluginListHeader';
+import PluginCreate from '../../../plugin-page-component/PluginCreate';
+import PluginMainPanel from '../../../plugin-page-component/PluginMainPanel';
 import PersonalNotesCreateForm from './PersonalNotesCreate/PersonalNotesCreateForm';
 import { columnsConfig, defaultColumnsSelected } from './table-columns.config'
 import { valuesNames } from './forms.config';
@@ -17,12 +17,12 @@ import { fetchPatientPersonalNotesRequest } from './ducks/fetch-patient-personal
 import { fetchPatientPersonalNotesDetailRequest } from './ducks/fetch-patient-personal-notes-detail.duck';
 import { fetchPatientPersonalNotesDetailEditRequest } from './ducks/fetch-patient-personal-notes-detail-edit.duck';
 import { fetchPatientPersonalNotesCreateRequest } from './ducks/fetch-patient-personal-notes-create.duck';
-import { fetchPatientPersonalNotesOnMount, fetchPatientPersonalNotesDetailOnMount } from '../../../utils/HOCs/fetch-patients.utils';
+import { fetchPatientPersonalNotesOnMount, fetchPatientPersonalNotesDetailOnMount } from '../../config/synopsisRequests';
 import { patientPersonalNotesSelector, patientPersonalNotesDetailSelector, personalNotePanelFormSelector, personalCreateFormStateSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
+import { themeClientUrls } from '../../config/clientUrls';
 import PersonalNotesDetail from './PersonalNotesDetail/PersonalNotesDetail';
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
-import { checkIsValidateForm, operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { checkIsValidateForm, operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 
 const PERSONAL_NOTES_MAIN = 'personalNotesMain';
 const PERSONAL_NOTES_DETAIL = 'personalNotesDetail';
@@ -71,13 +71,13 @@ export default class PersonalNotes extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.PERSONAL_NOTES}/${sourceId}` && sourceId !== undefined) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PERSONAL_NOTES}/${sourceId}` && sourceId !== undefined) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.PERSONAL_NOTES}/create`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PERSONAL_NOTES}/create`) {
       this.setState({ isSecondPanel: true, isBtnExpandVisible: true, isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: PERSONAL_NOTES_CREATE, isDetailPanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.PERSONAL_NOTES}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PERSONAL_NOTES}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: PERSONAL_NOTES_PANEL, isDetailPanelVisible: false, expandedPanel: 'all' })
     }
 
@@ -109,7 +109,7 @@ export default class PersonalNotes extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: PERSONAL_NOTES_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true });
     actions.fetchPatientPersonalNotesDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.PERSONAL_NOTES}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PERSONAL_NOTES}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
@@ -117,7 +117,7 @@ export default class PersonalNotes extends PureComponent {
   handleCreate = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: PERSONAL_NOTES_CREATE, isSecondPanel: true, isDetailPanelVisible: false, isBtnExpandVisible: true, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.PERSONAL_NOTES}/create`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PERSONAL_NOTES}/create`);
   };
 
   handleEdit = (name) => {
@@ -161,14 +161,14 @@ export default class PersonalNotes extends PureComponent {
   handleCreateCancel = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: PERSONAL_NOTES_PANEL, isSecondPanel: false, isBtnExpandVisible: false, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.PERSONAL_NOTES}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PERSONAL_NOTES}`);
   };
 
   handleSaveSettingsCreateForm = (formValues) => {
     const { actions, userId, personalCreateFormState } = this.props;
     if (checkIsValidateForm(personalCreateFormState)) {
       actions.fetchPatientPersonalNotesCreateRequest(this.formValuesToString(formValues, 'create'));
-      this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.PERSONAL_NOTES}`);
+      this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PERSONAL_NOTES}`);
       this.hideCreateForm();
       this.setState({ isLoading: true });
     } else {

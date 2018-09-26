@@ -2097,7 +2097,9 @@ exports[`Component <Vitals /> should renders correctly with vitalsDetail and tes
           }
           currentPanel="vitalsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="vitalsCreate"
           onCancel={[Function]}
@@ -2610,7 +2612,9 @@ exports[`Component <Vitals /> should renders correctly with vitalsDetail and tes
           }
           currentPanel="vitalsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="vitalsCreate"
           onCancel={[Function]}

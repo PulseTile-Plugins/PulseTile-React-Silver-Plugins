@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import _ from 'lodash/fp';
 
-import PTButton from '../../../ui-elements/PTButton/PTButton';
-import SortableTable from '../../../containers/SortableTable/SortableTable';
-import PaginationBlock from '../../../presentational/PaginationBlock/PaginationBlock';
-import Spinner from '../../../ui-elements/Spinner/Spinner';
+import PTButton from '../../../../ui-elements/PTButton/PTButton';
+import SortableTable from '../../../../containers/SortableTable/SortableTable';
+import PaginationBlock from '../../../../presentational/PaginationBlock/PaginationBlock';
+import Spinner from '../../../../ui-elements/Spinner/Spinner';
 import VitalsChart from './VitalsChart';
 
 export default class VitalsMainPanel extends PureComponent {

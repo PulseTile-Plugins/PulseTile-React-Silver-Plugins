@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import _ from 'lodash/fp';
 import classNames from 'classnames';
-import { testConstants, isDevMode } from '../../../../config/for-test.constants';
-import { hasClass } from '../../../../utils/plugin-helpers.utils';
+import { testConstants, isDevMode } from '../../../../../config/for-test.constants';
+import { hasClass } from '../../../../../utils/plugin-helpers.utils';
 
 const POPOVER_WIDTH = 266;
 

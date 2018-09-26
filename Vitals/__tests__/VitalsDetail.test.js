@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import VitalsDetail from '../VitalsDetail/VitalsDetail';
 import { valuesNames, valuesLabels, valuesAddons } from '../forms.config';
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 

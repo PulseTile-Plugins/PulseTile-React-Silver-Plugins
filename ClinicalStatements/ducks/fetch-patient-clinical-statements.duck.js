@@ -2,8 +2,8 @@ import _ from 'lodash/fp';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { createAction } from 'redux-actions';
 
-import { usersUrls } from '../../../../config/server-urls.constants'
-import { hasTokenInResponse } from '../../../../utils/plugin-helpers.utils';
+import { usersUrls } from '../../../../../config/server-urls.constants'
+import { hasTokenInResponse } from '../../../../../utils/plugin-helpers.utils';
 
 export const FETCH_PATIENT_CLINICAL_STATEMENTS_REQUEST = 'FETCH_PATIENT_CLINICAL_STATEMENTS_REQUEST';
 export const FETCH_PATIENT_CLINICAL_STATEMENTS_SUCCESS = 'FETCH_PATIENT_CLINICAL_STATEMENTS_SUCCESS';

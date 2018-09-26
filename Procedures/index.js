@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientProceduresDetailEpic } from './ducks/fetch-patient-procedures-detail.duck';
 import { fetchPatientProceduresDetailEditEpic } from './ducks/fetch-patient-procedures-detail-edit.duck';
@@ -27,9 +27,9 @@ const reducers = {
 const sidebarConfig = { key: 'procedures', pathToTransition: '/procedures', name: 'Procedures', isVisible: true };
 
 const routers = [
-  { key: 'procedures', component: Procedures, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.PROCEDURES}` },
-  { key: 'proceduresCreate', component: Procedures, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.PROCEDURES}/create` },
-  { key: 'proceduresDetail', component: Procedures, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.PROCEDURES}/:sourceId` },
+  { key: 'procedures', component: Procedures, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.PROCEDURES}` },
+  { key: 'proceduresCreate', component: Procedures, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.PROCEDURES}/create` },
+  { key: 'proceduresDetail', component: Procedures, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.PROCEDURES}/:sourceId` },
 ];
 
 export default {

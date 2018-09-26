@@ -14,6 +14,7 @@ exports[`Component <MDTsDetail /> should renders correctly with different state 
         }
       }
       isBtnShowPanel={false}
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="mdtsPanel"
@@ -190,6 +191,7 @@ exports[`Component <MDTsDetail /> should renders correctly with different state 
         }
       }
       isBtnShowPanel={false}
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="mdtsPanel"
@@ -229,6 +231,7 @@ exports[`Component <MDTsDetail /> should renders with props correctly 1`] = `
         }
       }
       isBtnShowPanel={false}
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="mdtsPanel"

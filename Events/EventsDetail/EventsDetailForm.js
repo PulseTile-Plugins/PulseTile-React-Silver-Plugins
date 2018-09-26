@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import moment from 'moment';
 
-import ValidatedInput from '../../../form-fields/ValidatedInputFormGroup';
-import ValidatedTextareaFormGroup from '../../../form-fields/ValidatedTextareaFormGroup';
-import DateInput from '../../../form-fields/DateInput';
-import SelectFormGroup from '../../../form-fields/SelectFormGroup';
+import ValidatedInput from '../../../../form-fields/ValidatedInputFormGroup';
+import ValidatedTextareaFormGroup from '../../../../form-fields/ValidatedTextareaFormGroup';
+import DateInput from '../../../../form-fields/DateInput';
+import SelectFormGroup from '../../../../form-fields/SelectFormGroup';
 import { valuesNames, valuesLabels } from '../forms.config';
 import { validateEventsForm } from '../forms.validation';
 

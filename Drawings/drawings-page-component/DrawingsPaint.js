@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { fabric } from 'fabric';
 
 import { brushSettings, fontsSettings, canvasSettings } from '../drawings.config';
-import PTButton from '../../../ui-elements/PTButton/PTButton';
+import PTButton from '../../../../ui-elements/PTButton/PTButton';
 
 export default class DrawingsPaint extends PureComponent {
   state = {

@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientPersonalNotesEpic } from './ducks/fetch-patient-personal-notes.duck';
 import { fetchPatientPersonalNotesUpdateEpic } from './ducks/fetch-patient-personal-notes.duck';
@@ -27,9 +27,9 @@ const reducers = {
 const sidebarConfig = { key: 'personalNotes', pathToTransition: '/personalNotes', name: 'Personal Notes', isVisible: true };
 
 const routers = [
-  { key: 'personalNotes', component: PersonalNotes, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.PERSONAL_NOTES}` },
-  { key: 'personalNotesCreate', component: PersonalNotes, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.PERSONAL_NOTES}/create` },
-  { key: 'personalNotesDetail', component: PersonalNotes, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.PERSONAL_NOTES}/:sourceId` },
+  { key: 'personalNotes', component: PersonalNotes, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.PERSONAL_NOTES}` },
+  { key: 'personalNotesCreate', component: PersonalNotes, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.PERSONAL_NOTES}/create` },
+  { key: 'personalNotesDetail', component: PersonalNotes, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.PERSONAL_NOTES}/:sourceId` },
 ];
 
 export default {

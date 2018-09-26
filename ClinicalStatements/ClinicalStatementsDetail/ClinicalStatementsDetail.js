@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 
-import PluginDetailPanel from '../../../plugin-page-component/PluginDetailPanel';
-import { Tag, TagList } from '../../../ui-elements/Tag/Tag';
-import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import PluginDetailPanel from '../../../../plugin-page-component/PluginDetailPanel';
+import { Tag, TagList } from '../../../../ui-elements/Tag/Tag';
+import { getDDMMMYYYY } from '../../../../../utils/time-helpers.utils';
 import { valuesNames, valuesLabels } from '../forms.config';
 
 const CLINICAL_STATEMENT_PANEL = 'clinicalStatementPanel';

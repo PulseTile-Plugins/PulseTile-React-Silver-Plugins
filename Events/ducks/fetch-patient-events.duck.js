@@ -2,10 +2,9 @@ import _ from 'lodash/fp';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { createAction } from 'redux-actions';
 
-import { usersUrls } from '../../../../config/server-urls.constants'
+import { usersUrls } from '../../../../../config/server-urls.constants'
 import { fetchPatientEventsDetailRequest } from './fetch-patient-events-detail.duck';
-import { hasTokenInResponse } from '../../../../utils/plugin-helpers.utils';
-
+import { hasTokenInResponse } from '../../../../../utils/plugin-helpers.utils';
 
 export const FETCH_PATIENT_EVENTS_REQUEST = 'FETCH_PATIENT_EVENTS_REQUEST';
 export const FETCH_PATIENT_EVENTS_SUCCESS = 'FETCH_PATIENT_EVENTS_SUCCESS';
@@ -20,7 +19,7 @@ export const fetchPatientEventsUpdateRequest = createAction(FETCH_PATIENT_EVENTS
 export const fetchPatientEventsEpic = (action$, store) =>
   action$.ofType(FETCH_PATIENT_EVENTS_REQUEST)
     .mergeMap(({ payload }) =>
-      ajax.getJSON(`${usersUrls.PATIENTS_URL}/${payload.userId}/events`, {
+      ajax.getJSON(`/api/patients/${payload.userId}/events`, {
         headers: { Cookie: store.getState().credentials.cookie },
       })
         .map((response) => {
@@ -36,7 +35,7 @@ export const fetchPatientEventsEpic = (action$, store) =>
 export const fetchPatientEventsUpdateEpic = (action$, store) =>
   action$.ofType(FETCH_PATIENT_EVENTS_UPDATE_REQUEST)
     .mergeMap(({ payload }) =>
-      ajax.getJSON(`${usersUrls.PATIENTS_URL}/${payload.userId}/events`, {
+      ajax.getJSON(`/api/patients/${payload.userId}/events`, {
         headers: { Cookie: store.getState().credentials.cookie },
       })
         .flatMap((response) => {

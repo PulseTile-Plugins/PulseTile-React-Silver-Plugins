@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientClinicalNotesEpic } from './ducks/fetch-patient-clinical-notes.duck';
 import { fetchPatientClinicalNotesUpdateEpic } from './ducks/fetch-patient-clinical-notes.duck';
@@ -27,9 +27,9 @@ const reducers = {
 const sidebarConfig = { key: 'clinicalNotes', pathToTransition: '/clinicalNotes', name: 'Clinical Notes', isVisible: true };
 
 const routers = [
-  { key: 'clinicalNotes', component: ClinicalNotes, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.CLINICAL_NOTES}` },
-  { key: 'clinicalNotesCreate', component: ClinicalNotes, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.CLINICAL_NOTES}/create` },
-  { key: 'clinicalNotesDetail', component: ClinicalNotes, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.CLINICAL_NOTES}/:sourceId` },
+  { key: 'clinicalNotes', component: ClinicalNotes, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.CLINICAL_NOTES}` },
+  { key: 'clinicalNotesCreate', component: ClinicalNotes, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.CLINICAL_NOTES}/create` },
+  { key: 'clinicalNotesDetail', component: ClinicalNotes, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.CLINICAL_NOTES}/:sourceId` },
 ];
 
 export default {

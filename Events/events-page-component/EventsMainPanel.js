@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import { Range } from 'rc-slider';
 import moment from 'moment';
 
-import PTButton from '../../../ui-elements/PTButton/PTButton';
-import SortableTable from '../../../containers/SortableTable/SortableTable';
-import PaginationBlock from '../../../presentational/PaginationBlock/PaginationBlock';
-import Spinner from '../../../ui-elements/Spinner/Spinner';
+import PTButton from '../../../../ui-elements/PTButton/PTButton';
+import SortableTable from '../../../../containers/SortableTable/SortableTable';
+import PaginationBlock from '../../../../presentational/PaginationBlock/PaginationBlock';
+import Spinner from '../../../../ui-elements/Spinner/Spinner';
 import Timelines from './EventsTimelines';
 import { getMarksArray } from '../events-helpers.utils'
 

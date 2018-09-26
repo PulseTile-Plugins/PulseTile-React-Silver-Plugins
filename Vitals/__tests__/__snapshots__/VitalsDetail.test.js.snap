@@ -13,6 +13,7 @@ exports[`Component <VitalsDetail /> should renders correctly with different stat
           "vitalPanel": false,
         }
       }
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="vitalPanel"
@@ -453,6 +454,7 @@ exports[`Component <VitalsDetail /> should renders correctly with different stat
           "vitalPanel": true,
         }
       }
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="vitalPanel"
@@ -610,6 +612,7 @@ exports[`Component <VitalsDetail /> should renders with props correctly 1`] = `
           "vitalPanel": false,
         }
       }
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={true}
       name="vitalPanel"

@@ -7,9 +7,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { lifecycle, compose } from 'recompose';
 
-import PluginListHeader from '../../plugin-page-component/PluginListHeader';
-import PluginCreate from '../../plugin-page-component/PluginCreate';
-import PluginMainPanel from '../../plugin-page-component/PluginMainPanel';
+import PluginListHeader from '../../../plugin-page-component/PluginListHeader';
+import PluginCreate from '../../../plugin-page-component/PluginCreate';
+import PluginMainPanel from '../../../plugin-page-component/PluginMainPanel';
 import MDTsCreateForm from './GenericMdtCreate/GenericMdtCreateForm';
 import { columnsConfig, defaultColumnsSelected } from './table-columns.config'
 import { valuesNames } from './forms.config';
@@ -17,12 +17,12 @@ import { fetchPatientMDTsRequest } from './ducks/fetch-patient-generic-mdt.duck'
 import { fetchPatientMDTsDetailRequest } from './ducks/fetch-patient-generic-mdt-detail.duck';
 import { fetchPatientMDTsDetailEditRequest } from './ducks/fetch-patient-generic-mdt-detail-edit.duck';
 import { fetchPatientMDTsCreateRequest } from './ducks/fetch-patient-generic-mdt-create.duck';
-import { fetchPatientMDTsOnMount, fetchPatientMDTsDetailOnMount } from '../../../utils/HOCs/fetch-patients.utils';
+import { fetchPatientMDTsOnMount, fetchPatientMDTsDetailOnMount } from '../../config/synopsisRequests';
 import { patientMDTsSelector, patientMDTsDetailSelector, mdtPanelFormSelector, mdtCreateFormStateSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
+import { themeClientUrls } from '../../config/clientUrls';
 import MDTsDetail from './GenericMdtDetail/GenericMdtDetail';
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
-import { checkIsValidateForm, operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { checkIsValidateForm, operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 
 const MDTS_MAIN = 'mdtsMain';
 const MDTS_DETAIL = 'mdtsDetail';
@@ -71,13 +71,13 @@ export default class MDTs extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.MDTS}/${sourceId}` && sourceId !== undefined) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.MDTS}/${sourceId}` && sourceId !== undefined) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.MDTS}/create`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.MDTS}/create`) {
       this.setState({ isSecondPanel: true, isBtnExpandVisible: true, isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: MDTS_CREATE, isDetailPanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.MDTS}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.MDTS}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: MDTS_PANEL, isDetailPanelVisible: false })
     }
 
@@ -109,7 +109,7 @@ export default class MDTs extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: MDTS_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true });
     actions.fetchPatientMDTsDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.MDTS}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.MDTS}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
@@ -117,7 +117,7 @@ export default class MDTs extends PureComponent {
   handleCreate = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: MDTS_CREATE, isSecondPanel: true, isDetailPanelVisible: false, isBtnExpandVisible: true, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.MDTS}/create`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.MDTS}/create`);
   };
 
   handleEdit = (name) => {
@@ -161,14 +161,14 @@ export default class MDTs extends PureComponent {
   handleCreateCancel = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: MDTS_PANEL, isSecondPanel: false, isBtnExpandVisible: false, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.MDTS}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.MDTS}`);
   };
 
   handleSaveSettingsCreateForm = (formValues) => {
     const { actions, userId, mdtCreateFormState } = this.props;
     if (checkIsValidateForm(mdtCreateFormState)) {
       actions.fetchPatientMDTsCreateRequest(this.formValuesToString(formValues, 'create'));
-      this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.MDTS}`);
+      this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.MDTS}`);
       this.hideCreateForm();
       this.setState({ isLoading: true });
     } else {

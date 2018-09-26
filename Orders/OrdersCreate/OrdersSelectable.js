@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
-import PTButton from '../../../ui-elements/PTButton/PTButton';
+import PTButton from '../../../../ui-elements/PTButton/PTButton';
 
 export default class OrdersSelectable extends PureComponent {
   render() {

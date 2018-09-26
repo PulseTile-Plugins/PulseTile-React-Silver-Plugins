@@ -8,7 +8,7 @@ import { valuesNames, valuesLabels } from '../forms.config';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-Date.now = jest.fn(() => new Date(Date.UTC(2018, 1, 1, 1)).valueOf())
+Date.now = jest.fn(() => new Date(Date.UTC(2018, 1, 1, 1)).valueOf());
 
 const propsForTransfersOfCarePanel = {
   detail: {

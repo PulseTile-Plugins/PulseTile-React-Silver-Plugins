@@ -7,8 +7,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { lifecycle, compose } from 'recompose';
 
-import PluginListHeader from '../../plugin-page-component/PluginListHeader';
-import PluginMainPanel from '../../plugin-page-component/PluginMainPanel';
+import PluginListHeader from '../../../plugin-page-component/PluginListHeader';
+import PluginMainPanel from '../../../plugin-page-component/PluginMainPanel';
 
 import { columnsConfig, defaultColumnsSelected } from './table-columns.config'
 import { valuesNames } from './forms.config';
@@ -16,14 +16,14 @@ import { valuesNames } from './forms.config';
 import { fetchPatientClinicalStatementsRequest } from './ducks/fetch-patient-clinical-statements.duck';
 import { fetchPatientClinicalStatementsCreateRequest } from './ducks/fetch-patient-clinical-statements-create.duck';
 import { fetchPatientClinicalStatementsDetailRequest } from './ducks/fetch-patient-clinical-statements-detail.duck';
-import { fetchPatientClinicalStatementsOnMount, fetchPatientClinicalStatementsDetailOnMount } from '../../../utils/HOCs/fetch-patients.utils';
+import { fetchPatientClinicalStatementsOnMount, fetchPatientClinicalStatementsDetailOnMount } from '../../config/synopsisRequests';
 import { patientClinicalStatementsSelector, clinicalStatementsCreateFormStateSelector, patientClinicalStatementsDetailSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
-import { checkIsValidateForm, operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { themeClientUrls } from '../../config/clientUrls';
+import { checkIsValidateForm, operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 import ClinicalStatementsDetail from './ClinicalStatementsDetail/ClinicalStatementsDetail';
-import PluginCreate from '../../plugin-page-component/PluginCreate';
+import PluginCreate from '../../../plugin-page-component/PluginCreate';
 import ClinicalStatementsCreateForm from './ClinicalStatementsCreate/ClinicalStatementsCreateForm'
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
 
 const CLINICAL_STATEMENTS_MAIN = 'clinicalStatementsMain';
 const CLINICAL_STATEMENTS_DETAIL = 'clinicalStatementsDetail';
@@ -72,13 +72,13 @@ export default class ClinicalStatements extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.CLINICAL_STATEMENTS}/${sourceId}` && sourceId !== undefined) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.CLINICAL_STATEMENTS}/${sourceId}` && sourceId !== undefined) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.CLINICAL_STATEMENTS}/create`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.CLINICAL_STATEMENTS}/create`) {
       this.setState({ isSecondPanel: true, isBtnExpandVisible: true, isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: CLINICAL_STATEMENTS_CREATE, isDetailPanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.CLINICAL_STATEMENTS}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.CLINICAL_STATEMENTS}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: CLINICAL_STATEMENT_PANEL, isDetailPanelVisible: false, expandedPanel: 'all' })
     }
 
@@ -110,7 +110,7 @@ export default class ClinicalStatements extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: CLINICAL_STATEMENT_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true })
     actions.fetchPatientClinicalStatementsDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.CLINICAL_STATEMENTS}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.CLINICAL_STATEMENTS}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
@@ -118,7 +118,7 @@ export default class ClinicalStatements extends PureComponent {
   handleCreate = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: CLINICAL_STATEMENTS_CREATE, isSecondPanel: true, isDetailPanelVisible: false, isSubmit: false, isLoading: true })
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.CLINICAL_STATEMENTS}/create`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.CLINICAL_STATEMENTS}/create`);
   };
 
   handleEdit = () => {};
@@ -128,7 +128,7 @@ export default class ClinicalStatements extends PureComponent {
   handleCreateCancel = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: CLINICAL_STATEMENT_PANEL, isSecondPanel: false, isBtnExpandVisible: false, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.CLINICAL_STATEMENTS}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.CLINICAL_STATEMENTS}`);
   };
 
   handleSaveSettingsCreateForm = (formValues) => {
@@ -138,7 +138,7 @@ export default class ClinicalStatements extends PureComponent {
 
     if (checkIsValidateForm(clinicalStatementsCreateFormState)) {
       actions.fetchPatientClinicalStatementsCreateRequest(this.formValuesToString(formValues, 'create'));
-      this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.CLINICAL_STATEMENTS}`);
+      this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.CLINICAL_STATEMENTS}`);
       this.hideCreateForm();
       this.setState({ clickOnCreate: !clickOnCreate, isSubmit: false, isLoading: true });
     } else {

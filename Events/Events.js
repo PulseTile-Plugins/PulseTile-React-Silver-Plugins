@@ -18,13 +18,13 @@ import { fetchPatientEventsRequest } from './ducks/fetch-patient-events.duck';
 import { fetchPatientEventsDetailRequest } from './ducks/fetch-patient-events-detail.duck';
 import { fetchPatientEventsDetailEditRequest } from './ducks/fetch-patient-events-detail-edit.duck';
 import { fetchPatientEventsCreateRequest } from './ducks/fetch-patient-events-create.duck';
-import { fetchPatientEventsOnMount, fetchPatientEventsDetailOnMount } from '../../../utils/HOCs/fetch-patients.utils';
+import { fetchPatientEventsOnMount, fetchPatientEventsDetailOnMount } from '../../config/synopsisRequests';
 import { patientEventsSelector, patientEventsDetailSelector, eventsDetailFormStateSelector, eventsCreateFormStateSelector, userSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
-import { checkIsValidateForm, operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { themeClientUrls } from '../../config/clientUrls';
+import { checkIsValidateForm, operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 import EventsDetail from './EventsDetail/EventsDetail';
-import PluginCreate from '../../plugin-page-component/PluginCreate';
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
+import PluginCreate from '../../../plugin-page-component/PluginCreate';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
 import { modificateEventsArr, getCookie, openPopup } from './events-helpers.utils';
 import EventsCreateForm from './EventsCreate/EventsCreateForm'
 
@@ -118,7 +118,7 @@ export default class Events extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.EVENTS}/${sourceId}` && sourceId !== undefined) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.EVENTS}/${sourceId}` && sourceId !== undefined) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, eventsType: 'initEventsType' })
       if (!_.isEmpty(eventDetail) && !_.isEmpty(nextProps)) {
         if (eventDetail.sourceId !== nextProps.eventDetail.sourceId) {
@@ -132,10 +132,10 @@ export default class Events extends PureComponent {
         }
       }
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.EVENTS}/create` && _.isEmpty(this.state.eventsType)) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.EVENTS}/create` && _.isEmpty(this.state.eventsType)) {
       this.setState({ isSecondPanel: true, isBtnExpandVisible: true, isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: EVENTS_CREATE, isDetailPanelVisible: false, eventsType: 'Transfer' })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.EVENTS}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.EVENTS}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: EVENT_PANEL, isDetailPanelVisible: false, eventsType: 'initEventsType', expandedPanel: 'all' })
     }
 
@@ -199,7 +199,7 @@ export default class Events extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: EVENT_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true, eventsType: '' })
     actions.fetchPatientEventsDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.EVENTS}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.EVENTS}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
@@ -207,7 +207,7 @@ export default class Events extends PureComponent {
   handleCreate = (eventsType) => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: EVENTS_CREATE, isSecondPanel: true, isDetailPanelVisible: false, isSubmit: false, isLoading: true, eventsType })
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.EVENTS}/create`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.EVENTS}/create`);
   };
 
   handleEdit = (name) => {
@@ -251,7 +251,7 @@ export default class Events extends PureComponent {
   handleCreateCancel = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: EVENT_PANEL, isSecondPanel: false, isBtnExpandVisible: false, expandedPanel: 'all', isSubmit: false, isLoading: true, eventsType: '' });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.EVENTS}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.EVENTS}`);
   };
 
   handleSaveSettingsCreateForm = (formValues) => {
@@ -259,7 +259,7 @@ export default class Events extends PureComponent {
 
     if (checkIsValidateForm(eventsCreateFormState)) {
       actions.fetchPatientEventsCreateRequest(this.formValuesToString(formValues, 'create'));
-      this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.EVENTS}`);
+      this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.EVENTS}`);
       this.hideCreateForm();
       this.setState({ isSubmit: false, isLoading: true });
     } else {

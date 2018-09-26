@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientMDTsEpic } from './ducks/fetch-patient-generic-mdt.duck';
 import { fetchPatientMDTsUpdateEpic } from './ducks/fetch-patient-generic-mdt.duck';
@@ -27,9 +27,9 @@ const reducers = {
 const sidebarConfig = { key: 'mdt', pathToTransition: '/mdt', name: 'Generic MDT', isVisible: true };
 
 const routers = [
-  { key: 'mdts', component: MDTs, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.MDTS}` },
-  { key: 'mdtsCreate', component: MDTs, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.MDTS}/create` },
-  { key: 'mdtsDetail', component: MDTs, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.MDTS}/:sourceId` },
+  { key: 'mdts', component: MDTs, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.MDTS}` },
+  { key: 'mdtsCreate', component: MDTs, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.MDTS}/create` },
+  { key: 'mdtsDetail', component: MDTs, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.MDTS}/:sourceId` },
 ];
 
 export default {

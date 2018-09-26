@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';;
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientTransfersOfCareDetailEpic } from './ducks/fetch-patient-transfers-of-care-detail.duck';
 import { fetchPatientTransfersOfCareDetailEditEpic } from './ducks/fetch-patient-transfers-of-care-detail-edit.duck';
@@ -27,9 +27,9 @@ const reducers = {
 const sidebarConfig = { key: 'transfer-of-care', pathToTransition: '/transfer-of-care', name: 'Transfers of Care', isVisible: true };
 
 const routers = [
-  { key: 'transfersOfCare', component: TransfersOfCare, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.TRANSFERS_OF_CARE}` },
-  { key: 'transfersOfCareCreate', component: TransfersOfCare, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.TRANSFERS_OF_CARE}/create` },
-  { key: 'transfersOfCareDetail', component: TransfersOfCare, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.TRANSFERS_OF_CARE}/:sourceId` },
+  { key: 'transfersOfCare', component: TransfersOfCare, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.TRANSFERS_OF_CARE}` },
+  { key: 'transfersOfCareCreate', component: TransfersOfCare, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.TRANSFERS_OF_CARE}/create` },
+  { key: 'transfersOfCareDetail', component: TransfersOfCare, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.TRANSFERS_OF_CARE}/:sourceId` },
 ];
 
 export default {

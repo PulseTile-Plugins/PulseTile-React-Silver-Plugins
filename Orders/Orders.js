@@ -7,9 +7,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { lifecycle, compose } from 'recompose';
 
-import PluginListHeader from '../../plugin-page-component/PluginListHeader';
-import PluginCreate from '../../plugin-page-component/PluginCreate';
-import PluginMainPanel from '../../plugin-page-component/PluginMainPanel';
+import PluginListHeader from '../../../plugin-page-component/PluginListHeader';
+import PluginCreate from '../../../plugin-page-component/PluginCreate';
+import PluginMainPanel from '../../../plugin-page-component/PluginMainPanel';
 import OrdersCreateForm from './OrdersCreate/OrdersCreateForm';
 import { columnsConfig, defaultColumnsSelected } from './table-columns.config'
 import { valuesNames } from './forms.config';
@@ -17,12 +17,12 @@ import { fetchPatientOrdersRequest } from './ducks/fetch-patient-orders.duck';
 import { fetchPatientOrdersDetailRequest } from './ducks/fetch-patient-orders-detail.duck';
 import { fetchPatientOrdersCreateRequest } from './ducks/fetch-patient-orders-create.duck';
 import { fetchListOrdersRequest } from './ducks/fetch-list-orders.duck';
-import { fetchPatientOrdersOnMount, fetchPatientOrdersDetailOnMount, fetchListOrdersOnMount } from '../../../utils/HOCs/fetch-patients.utils';
+import { fetchPatientOrdersOnMount, fetchPatientOrdersDetailOnMount, fetchListOrdersOnMount } from '../../config/synopsisRequests';
 import { patientOrdersSelector, patientOrdersDetailSelector, orderPanelFormSelector, ordersCreateFormStateSelector, listOrderSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
+import { themeClientUrls } from '../../config/clientUrls';
 import OrdersDetail from './OrdersDetail/OrdersDetail';
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
-import { checkIsValidateForm, operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
+import { checkIsValidateForm, operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 
 const ORDERS_MAIN = 'ordersMain';
 const ORDERS_DETAIL = 'ordersDetail';
@@ -73,13 +73,13 @@ export default class Orders extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.ORDERS}/${sourceId}` && sourceId !== undefined) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.ORDERS}/${sourceId}` && sourceId !== undefined) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.ORDERS}/create`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.ORDERS}/create`) {
       this.setState({ isSecondPanel: true, isBtnExpandVisible: true, isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: ORDERS_CREATE, isDetailPanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.ORDERS}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.ORDERS}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: ORDERS_PANEL, isDetailPanelVisible: false, expandedPanel: 'all' })
     }
 
@@ -111,7 +111,7 @@ export default class Orders extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: ORDERS_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true });
     actions.fetchPatientOrdersDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.ORDERS}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.ORDERS}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
@@ -120,19 +120,19 @@ export default class Orders extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: ORDERS_CREATE, isSecondPanel: true, isDetailPanelVisible: false, isBtnExpandVisible: true, expandedPanel: 'all', isSubmit: false, isLoading: true });
     actions.fetchListOrdersRequest();
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.ORDERS}/create`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.ORDERS}/create`);
   };
 
   handleCreateCancel = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: ORDERS_PANEL, isSecondPanel: false, isBtnExpandVisible: false, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.ORDERS}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.ORDERS}`);
   };
 
   handleSaveSettingsCreateForm = (formValues) => {
     const { actions, userId, ordersCreateFormState } = this.props;
     actions.fetchPatientOrdersCreateRequest(this.formValuesToString(formValues, 'create'));
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.ORDERS}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.ORDERS}`);
     this.hideCreateForm();
     this.setState({ isLoading: true });
   };

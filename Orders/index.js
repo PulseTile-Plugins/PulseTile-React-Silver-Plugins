@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientOrdersEpic } from './ducks/fetch-patient-orders.duck';
 import { fetchPatientOrdersDetailEpic } from './ducks/fetch-patient-orders-detail.duck';
@@ -26,9 +26,9 @@ const reducers = {
 const sidebarConfig = { key: 'orders', pathToTransition: '/orders', name: 'Orders', isVisible: true };
 
 const routers = [
-  { key: 'orders', component: Orders, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.ORDERS}` },
-  { key: 'ordersCreate', component: Orders, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.ORDERS}/create` },
-  { key: 'ordersDetail', component: Orders, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.ORDERS}/:sourceId` },
+  { key: 'orders', component: Orders, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.ORDERS}` },
+  { key: 'ordersCreate', component: Orders, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.ORDERS}/create` },
+  { key: 'ordersDetail', component: Orders, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.ORDERS}/:sourceId` },
 ];
 
 export default {

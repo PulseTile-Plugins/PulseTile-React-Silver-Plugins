@@ -1,7 +1,7 @@
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { createAction } from 'redux-actions';
 
-import { usersUrls } from '../../../../config/server-urls.constants'
+import { usersUrls } from '../../../../../config/server-urls.constants'
 import { fetchPatientClinicalStatementsRequest } from './fetch-patient-clinical-statements.duck'
 
 export const FETCH_PATIENT_CLINICAL_STATEMENTS_CREATE_REQUEST = 'FETCH_PATIENT_CLINICAL_STATEMENTS_CREATE_REQUEST';

@@ -346,7 +346,9 @@ exports[`Component <Events /> should renders correctly and testing context and l
           }
           currentPanel="eventsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="eventsCreate"
           onCancel={[Function]}
@@ -791,7 +793,9 @@ exports[`Component <Events /> should renders correctly with eventsDetail and tes
           }
           currentPanel="eventsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="eventsCreate"
           onCancel={[Function]}
@@ -983,7 +987,9 @@ exports[`Component <Events /> should renders correctly with eventsDetail and tes
           }
           currentPanel="eventsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="eventsCreate"
           onCancel={[Function]}

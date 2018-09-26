@@ -7,8 +7,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { lifecycle, compose } from 'recompose';
 
-import PluginListHeader from '../../plugin-page-component/PluginListHeader';
-import PluginMainPanel from '../../plugin-page-component/PluginMainPanel';
+import PluginListHeader from '../../../plugin-page-component/PluginListHeader';
+import PluginMainPanel from '../../../plugin-page-component/PluginMainPanel';
 
 import { columnsConfig, defaultColumnsSelected } from './table-columns.config'
 import { valuesNames } from './forms.config';
@@ -16,14 +16,14 @@ import { fetchPatientProceduresRequest } from './ducks/fetch-patient-procedures.
 import { fetchPatientProceduresCreateRequest } from './ducks/fetch-patient-procedures-create.duck';
 import { fetchPatientProceduresDetailRequest } from './ducks/fetch-patient-procedures-detail.duck';
 import { fetchPatientProceduresDetailEditRequest } from './ducks/fetch-patient-procedures-detail-edit.duck';
-import { fetchPatientProceduresOnMount, fetchPatientProceduresDetailOnMount } from '../../../utils/HOCs/fetch-patients.utils';
+import { fetchPatientProceduresOnMount, fetchPatientProceduresDetailOnMount } from '../../config/synopsisRequests';
 import { patientProceduresSelector, proceduresDetailFormStateSelector, proceduresCreateFormStateSelector, metaPanelFormStateSelector, patientProceduresDetailSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
-import { checkIsValidateForm, operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { themeClientUrls } from '../../config/clientUrls';
+import { checkIsValidateForm, operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 import ProceduresDetail from './ProceduresDetail/ProceduresDetail';
-import PluginCreate from '../../plugin-page-component/PluginCreate';
+import PluginCreate from '../../../plugin-page-component/PluginCreate';
 import ProceduresCreateForm from './ProceduresCreate/ProceduresCreateForm'
-import { getDDMMMYYYY, getHHmm } from '../../../utils/time-helpers.utils';
+import { getDDMMMYYYY, getHHmm } from '../../../../utils/time-helpers.utils';
 
 const PROCEDURES_MAIN = 'proceduresMain';
 const PROCEDURES_DETAIL = 'proceduresDetail';
@@ -75,13 +75,13 @@ export default class Procedures extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.PROCEDURES}/${sourceId}` && sourceId !== undefined) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PROCEDURES}/${sourceId}` && sourceId !== undefined) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.PROCEDURES}/create`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PROCEDURES}/create`) {
       this.setState({ isSecondPanel: true, isBtnExpandVisible: true, isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: PROCEDURES_CREATE, isDetailPanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.PROCEDURES}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PROCEDURES}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: PROCEDURE_PANEL, isDetailPanelVisible: false, expandedPanel: 'all' })
     }
 
@@ -113,7 +113,7 @@ export default class Procedures extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: PROCEDURE_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true })
     actions.fetchPatientProceduresDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.PROCEDURES}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PROCEDURES}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
@@ -121,7 +121,7 @@ export default class Procedures extends PureComponent {
   handleCreate = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: false, isCreatePanelVisible: true, openedPanel: PROCEDURES_CREATE, isSecondPanel: true, isDetailPanelVisible: false, isSubmit: false, isLoading: true })
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.PROCEDURES}/create`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PROCEDURES}/create`);
   };
 
   handleEdit = (name) => {
@@ -165,7 +165,7 @@ export default class Procedures extends PureComponent {
   handleCreateCancel = () => {
     const { userId } = this.props;
     this.setState({ isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: PROCEDURE_PANEL, isSecondPanel: false, isBtnExpandVisible: false, expandedPanel: 'all', isSubmit: false, isLoading: true });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.PROCEDURES}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PROCEDURES}`);
   };
 
   handleSaveSettingsCreateForm = (formValues) => {
@@ -173,7 +173,7 @@ export default class Procedures extends PureComponent {
 
     if (checkIsValidateForm(proceduresCreateFormState)) {
       actions.fetchPatientProceduresCreateRequest(this.formValuesToString(formValues, 'create'));
-      this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.PROCEDURES}`);
+      this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.PROCEDURES}`);
       this.hideCreateForm();
       this.setState({ isSubmit: false, isLoading: true });
     } else {

@@ -7,19 +7,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { lifecycle, compose } from 'recompose';
 
-import PluginListHeader from '../../plugin-page-component/PluginListHeader';
-import PluginMainPanel from '../../plugin-page-component/PluginMainPanel';
+import PluginListHeader from '../../../plugin-page-component/PluginListHeader';
+import PluginMainPanel from '../../../plugin-page-component/PluginMainPanel';
 
 import { columnsConfig, defaultColumnsSelected } from './table-columns.config'
 import { valuesNames } from './forms.config';
 import { fetchPatientDocumentsRequest } from './ducks/fetch-patient-documents.duck';
 import { fetchPatientDocumentsDetailRequest } from './ducks/fetch-patient-documents-detail.duck';
-import {fetchPatientDocumentsOnMount, fetchPatientDocumentsDetailOnMount} from '../../../utils/HOCs/fetch-patients.utils';
+import {fetchPatientDocumentsOnMount, fetchPatientDocumentsDetailOnMount} from '../../config/synopsisRequests';
 import { patientDocumentsSelector, patientDocumentsDetailSelector } from './selectors';
-import { clientUrls } from '../../../config/client-urls.constants';
-import { operationsOnCollection } from '../../../utils/plugin-helpers.utils';
+import { themeClientUrls } from '../../config/clientUrls';
+import { operationsOnCollection } from '../../../../utils/plugin-helpers.utils';
 import DocumentsDetail from './DocumentsDetail/DocumentsDetail';
-import { getDDMMMYYYY } from '../../../utils/time-helpers.utils';
+import { getDDMMMYYYY } from '../../../../utils/time-helpers.utils';
 
 const DOCUMENTS_MAIN = 'documentsMain';
 const DOCUMENTS_DETAIL = 'documentsDetail';
@@ -64,10 +64,10 @@ export default class Documents extends PureComponent {
     const userId = this.context.router.route.match.params.userId;
 
     //TODO should be implemented common function, and the state stored in the store Redux
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.DOCUMENTS}/${sourceId}` && sourceId !== undefined) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.DOCUMENTS}/${sourceId}` && sourceId !== undefined) {
       this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, isBtnCreateVisible: true, isCreatePanelVisible: false })
     }
-    if (this.context.router.history.location.pathname === `${clientUrls.PATIENTS}/${userId}/${clientUrls.DOCUMENTS}`) {
+    if (this.context.router.history.location.pathname === `${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.DOCUMENTS}`) {
       this.setState({ isSecondPanel: false, isBtnExpandVisible: false, isBtnCreateVisible: true, isCreatePanelVisible: false, openedPanel: DOCUMENT_PANEL, isDetailPanelVisible: false, expandedPanel: 'all' })
     }
 
@@ -99,7 +99,7 @@ export default class Documents extends PureComponent {
     const { actions, userId } = this.props;
     this.setState({ isSecondPanel: true, isDetailPanelVisible: true, isBtnExpandVisible: true, openedPanel: DOCUMENT_PANEL, editedPanel: {}, expandedPanel: 'all', isLoading: true })
     actions.fetchPatientDocumentsDetailRequest({ userId, sourceId });
-    this.context.router.history.push(`${clientUrls.PATIENTS}/${userId}/${clientUrls.DOCUMENTS}/${sourceId}`);
+    this.context.router.history.push(`${themeClientUrls.PATIENTS}/${userId}/${themeClientUrls.DOCUMENTS}/${sourceId}`);
   };
 
   handleSetOffset = offset => this.setState({ offset });
