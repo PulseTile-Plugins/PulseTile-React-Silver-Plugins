@@ -285,7 +285,9 @@ exports[`Component <ClinicalNotes /> should renders correctly with clinicalNotes
           }
           currentPanel="clinicalNotesCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="clinicalNotesCreate"
           onCancel={[Function]}
@@ -391,7 +393,9 @@ exports[`Component <ClinicalNotes /> should renders correctly with clinicalNotes
           }
           currentPanel="clinicalNotesCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="clinicalNotesCreate"
           onCancel={[Function]}

@@ -624,7 +624,9 @@ exports[`Component <Orders /> should renders correctly with ordersDetail and tes
           }
           currentPanel="ordersCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="ordersCreate"
           onCancel={[Function]}
@@ -782,7 +784,9 @@ exports[`Component <Orders /> should renders correctly with ordersDetail and tes
           }
           currentPanel="ordersCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="ordersCreate"
           onCancel={[Function]}

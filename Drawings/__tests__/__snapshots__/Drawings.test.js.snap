@@ -343,7 +343,9 @@ exports[`Component <Drawings /> should renders correctly with drawingsDetail and
           }
           currentPanel="drawingsCreate"
           expandedPanel="all"
+          headingName=""
           isCreatePanelVisible={true}
+          isCreationPermitted={true}
           isImport={false}
           name="drawingsCreate"
           onCancel={[Function]}
