@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import asyncComponent from '../../../components/containers/AsyncComponent/AsyncComponent';
-import { clientUrls } from '../../../config/client-urls.constants';
+import asyncComponent from '../../../../components/containers/AsyncComponent/AsyncComponent';
+import { themeClientUrls } from '../../config/clientUrls';
 
 import { fetchPatientTestResultsDetailEpic } from './ducks/fetch-patient-test-results-detail.duck';
 import { fetchPatientTestResultsEpic } from './ducks/fetch-patient-test-results.duck';
@@ -20,8 +20,8 @@ const reducers = {
 const sidebarConfig = { key: 'results', pathToTransition: '/results', name: 'Results', isVisible: true };
 
 const routers = [
-  { key: 'testResults', component: TestResults, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.TEST_RESULTS}` },
-  { key: 'testResultsDetail', component: TestResults, path: `${clientUrls.PATIENTS}/:userId/${clientUrls.TEST_RESULTS}/:sourceId` },
+  { key: 'testResults', component: TestResults, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.RESULTS}` },
+  { key: 'testResultsDetail', component: TestResults, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.RESULTS}/:sourceId` },
 ];
 
 export default {
