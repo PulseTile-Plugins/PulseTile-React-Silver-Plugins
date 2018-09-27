@@ -14,6 +14,7 @@ exports[`Component <ClinicalStatementsDetail /> should renders with props correc
         }
       }
       isBtnShowPanel={false}
+      isEditButton={true}
       isOpen={false}
       isShowControlPanel={false}
       name="clinicalStatementPanel"

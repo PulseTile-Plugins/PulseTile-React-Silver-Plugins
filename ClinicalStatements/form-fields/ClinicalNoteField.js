@@ -16,7 +16,7 @@ import * as helper from './clinical-statements-helper';
 
 import { fetchPatientClinicalStatementsTagsRequest } from '../ducks/fetch-patient-clinical-statements-tags.duck';
 import { fetchPatientClinicalStatementsQueryRequest } from '../ducks/fetch-patient-clinical-statements-query.duck';
-import { fetchPatientClinicalStatementsTagsOnMount } from '../../../config/synopsisRequests';
+import { fetchPatientClinicalStatementsTagsOnMount } from '../utils';
 import { patientClinicalStatementsTagsSelector, patientClinicalStatementsQuerySelector } from '../selectors';
 
 const mapDispatchToProps = dispatch => ({ actions: bindActionCreators({ fetchPatientClinicalStatementsTagsRequest, fetchPatientClinicalStatementsQueryRequest }, dispatch) });
