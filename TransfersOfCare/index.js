@@ -24,7 +24,7 @@ const reducers = {
   transfersOfCareDetailEdit,
 };
 
-const sidebarConfig = { key: 'transfer-of-care', pathToTransition: '/transfer-of-care', name: 'Transfers of Care', isVisible: true };
+const sidebarConfig = { key: 'transfer-of-care', pathToTransition: '/transfersOfCare', name: 'Transfers of Care', isVisible: true };
 
 const routers = [
   { key: 'transfersOfCare', component: TransfersOfCare, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.TRANSFERS_OF_CARE}` },
