@@ -24,7 +24,7 @@ const reducers = {
   mdtsCreate,
 };
 
-const sidebarConfig = { key: 'mdt', pathToTransition: '/mdt', name: 'Generic MDT', isVisible: true };
+const sidebarConfig = { key: 'mdts', pathToTransition: '/mdts', name: 'Generic MDT', isVisible: true };
 
 const routers = [
   { key: 'mdts', component: MDTs, path: `${themeClientUrls.PATIENTS}/:userId/${themeClientUrls.MDTS}` },
